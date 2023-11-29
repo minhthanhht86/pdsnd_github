@@ -37,7 +37,7 @@ def display_data(df):
         if "yes" != user_confirm.lower() and "y" != user_confirm.lower():
             return
 
-def print_new_paragraph(num_char):
+def print_new_paragraph(num_char = 40):
     print('-' * num_char)
 
 
