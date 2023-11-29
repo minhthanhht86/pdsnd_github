@@ -157,7 +157,10 @@ def time_stats(df, str_month, str_day):
 
 
 def station_stats(df):
-    """Displays statistics on the most popular stations and trip."""
+    """Displays statistics on the most popular stations and trip.
+    Args:
+        df (DataFrame): DataFrame of csv file
+    """
 
     print('\nCalculating The Most Popular Stations and Trip...\n')
     start_time = time.time()
