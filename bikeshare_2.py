@@ -8,6 +8,7 @@ cities = {'cg': 'chicago.csv', 'chicago': 'chicago.csv',
 
 months = ['jan', 'feb', 'mar', 'apr', 'may', 'jun']
 
+"""days is array day in week"""
 days = ['mon', 'tue', 'wed', 'thu', 'fri', 'sat', 'sun']
 
 
@@ -28,7 +29,7 @@ def display_data(df):
     while current_line < len(df):
         for index, row in df[current_line:current_line + max_line].iterrows():
             print(row.to_string(index=True, dtype=False))
-            
+            print_new_paragraph(20)
 
         current_line += max_line
         # Check for user input
@@ -36,8 +37,8 @@ def display_data(df):
         if "yes" != user_confirm.lower() and "y" != user_confirm.lower():
             return
 
-
-
+def print_new_paragraph(num_char):
+    print('-' * num_char)
 
 
 def data_input(msg, resource_data, is_check):
@@ -90,7 +91,7 @@ def get_filters():
     # Get user input for day of week (all, monday, tuesday, ... sunday)
     str_day = data_input("Enter a day (all, mon, tue, ..., sun)", days, True)
 
-    
+    print_new_paragraph(40)
 
     return str_city, str_month, str_day
 
@@ -153,11 +154,14 @@ def time_stats(df, str_month, str_day):
     print("The most common hour:", hour_focus)
 
     print("\nThis took %s seconds." % (time.time() - start_time))
-    
+    print_new_paragraph(40)
 
 
 def station_stats(df):
-    """Displays statistics on the most popular stations and trip."""
+    """Displays statistics on the most popular stations and trip.
+    Args:
+        df (DataFrame): DataFrame of csv file
+    """
 
     print('\nCalculating The Most Popular Stations and Trip...\n')
     start_time = time.time()
@@ -182,7 +186,7 @@ def station_stats(df):
     else:
         print('Most frequent combination of start station and end station trip: empty')
     print("\nThis took %s seconds." % (time.time() - start_time))
-    
+    print_new_paragraph(40)
 
 
 def trip_duration_stats(df):
@@ -200,11 +204,15 @@ def trip_duration_stats(df):
     print("Mean travel time(seconds): ", mean_travel)
 
     print("\nThis took %s seconds." % (time.time() - start_time))
-    
+    print_new_paragraph(40)
 
 
 def user_stats(df):
-    """Displays statistics on bikeshare users."""
+    """Displays statistics on bikeshare users.
+    
+    Args:
+        df (DataFrame): DataFrame of csv file
+    """
 
     print('\nCalculating User Stats...\n')
     start_time = time.time()
@@ -212,7 +220,7 @@ def user_stats(df):
     # Display counts of user types
     user_types_count = df["User Type"].value_counts()
     print("User types count:\n", user_types_count.to_string(index=True, dtype=False))
-    
+    print_new_paragraph(20)
 
     # Display counts of gender
     try:
@@ -220,7 +228,7 @@ def user_stats(df):
         print("Genders count:\n", genders_count.to_string(index=True, dtype=False))
     except Exception:
         print("Genders count: empty")
-    
+    print_new_paragraph(20)
 
     # Display earliest, most recent, and most common year of birth
     earliest = most_recent = most_common = ""
@@ -237,7 +245,7 @@ def user_stats(df):
         print("Most common year of birth: ", most_common)
 
     print("\nThis took %s seconds." % (time.time() - start_time))
-    
+    print_new_paragraph(40)
 
 
 def main():
